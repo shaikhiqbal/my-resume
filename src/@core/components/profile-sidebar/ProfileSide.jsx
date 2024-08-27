@@ -7,7 +7,7 @@ import { Mail, MapPin, Phone } from "react-feather";
 
 import { Linkedin, Git } from "@Icon";
 
-import {Download} from "react-feather"
+import { Download } from "react-feather";
 
 const icons = {
   email: <Mail size={14} />,
@@ -17,6 +17,28 @@ const icons = {
 
 const ProfileSide = () => {
   const { myProfile } = profileConfig;
+
+  const handleDownload = () => {
+    // Ensure this path is correct
+
+    fetch("../../document/IqbaslResumeFr.pdf")
+      .then((response) => response.blob())
+      .then((blob) => {
+        {
+          {
+            debugger;
+          }
+        }
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "IqbalFrontendDev.pdf"); // or any other extension
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+      })
+      .catch((error) => console.error("Error downloading the PDF:", error));
+  };
 
   return (
     <div className="flex flex-col gap-10 px-15">
@@ -49,23 +71,41 @@ const ProfileSide = () => {
         </ul>
       </div>
       <div className="m-2">
-        <Button label="Download Resume" icon={<Download/> } variant="icon" />
+        <Button
+          label="Download Resume"
+          icon={<Download />}
+          variant="icon"
+          className="cursor-pointer"
+          onClick={handleDownload}
+        />
       </div>
       <div className="m-2 flex justify-evenly cursor-pointer">
-        <div className="w-20 h-20 p-3 bg-dark shadow-md rounded-md cursor-pointer">
-          <img
-            src={Linkedin}
-            alt="Icon.png"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="w-20 h-20 p-3 bg-dark shadow-md rounded-md cursor-pointer">
-          <img
-            src={Git}
-            alt="Icon.png"
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <a
+          href="https://www.linkedin.com/in/shaikh-iqbal-mohammad/"
+          target="_blank"
+          className="cursor-pointer"
+        >
+          <div className="w-20 h-20 p-3 bg-dark shadow-md rounded-md cursor-pointer">
+            <img
+              src={Linkedin}
+              alt="Icon.png"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </a>
+        <a
+          href="https://github.com/shaikhiqbal"
+          target="_blank"
+          className="cursor-pointer"
+        >
+          <div className="w-20 h-20 p-3 bg-dark shadow-md rounded-md cursor-pointer">
+            <img
+              src={Git}
+              alt="Icon.png"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </a>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import profile from "@profile";
 import { Calendar, Map } from "react-feather";
 
 const AboutUs = () => {
-  const { learningSkill, aboutMe, jobs } = profile;
+  const { learningSkill, aboutMe, jobs,skill } = profile;
 
   const icons = {
     joinedDate: <Calendar size={14} />,
@@ -11,7 +11,7 @@ const AboutUs = () => {
   };
 
   return (
-    <div className="px-5">
+    <div className="px-5 py-3">
       <h1 className="text-xl font-extrabold mb-4">{aboutMe.title}</h1>
       <div>
         {aboutMe?.list.map((data, key) => (
@@ -22,7 +22,7 @@ const AboutUs = () => {
       {jobs.map((job, key) => (
         <div key={key} className="mt-16 mb-3">
           <h1 className="text-xl font-extrabold mb-4">{job.title}</h1>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center flex-wrap">
             <p className="text-lg font-semibold border-b flex">
               <span>{job.company}</span>{" "}
               <span>
@@ -30,7 +30,7 @@ const AboutUs = () => {
               </span>
             </p>
 
-            <div className="flex">
+            <div className="flex flex-wrap">
               <div className="flex items-center gap-2 p-3 font-semibold ">
                 <span>{icons["joinedDate"]}</span>
                 <span>{job.joinedDate}</span>
@@ -53,8 +53,22 @@ const AboutUs = () => {
         </div>
       ))}
 
+      <h1 className="text-xl font-extrabold mt-16">Skills</h1>
+      <ul className="list-none flex gap-3 flex-wrap ">
+        {skill.map((test, i) => (
+          <li key={i} className="py-3   w-36 h-36">
+            <div className="flex flex-col items-center justify-center shadow-xl p-4 w-36 h-36">
+              <div className="w-14 h-14">
+                <img src={test.icon} alt="icon" className="object-cover" />
+              </div>
+
+              <p className="text-sm font-medium mt-2 text-muted">{test.name}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
       <h1 className="text-xl font-extrabold mt-16">Current Learning</h1>
-      <ul className="list-none flex justify-evenly flex-wrap">
+      <ul className="list-none flex gap-3 flex-wrap">
         {learningSkill.map((test, i) => (
           <li key={i} className="py-3 rounded-full w-36 h-36">
             <div className="flex flex-col items-center justify-center shadow-xl p-4 w-36 h-36">

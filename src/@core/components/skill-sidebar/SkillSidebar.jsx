@@ -24,7 +24,7 @@ const SkillSidebar = () => {
                       className="h-full rounded-full"
                       style={{ width: `${test.rate * 10}%`, height: "10px",background:test.color }}
                     >
-                      {" "}
+
                     </div>
                   </div>
                 </div>

@@ -1,27 +1,28 @@
 import ProfileSidebar from "@ProfileSidebar";
-import SkillSidebar from "@SkillSidebar";
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 import AboutUs from "../components/about/AboutUs";
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 const Horizontal = () => {
   return (
-    <div className="  flex">
-      <div className="w-3/4 pt-28 ps-28 min-h-full flex">
-        <div className="w-1/4 ">
+    <div className="flex flex-wrap h-screen lg:ps-20  lg:pt-20">
+      {/* First div: 3/12 on lg, 4/12 on md */}
+      <div className="w-full md:w-4/12 lg:w-3/12 relative overflow-auto">
+        <div className="md:absolute top-0 z-10 md:h-full py-7 flex justify-center" >
           <ProfileSidebar />
         </div>
-        <div className="w-3/4 px-16 max-h-[100vh] overflow-y-auto" >
+      </div>
+      <div className="w-full md:w-8/12 lg:w-9/12 bg-green md:relative md:overflow-auto rounded-lg">
+        <div className="md:absolute top-0 z-10 md:h-full md:py-7">
           <AboutUs />
         </div>
       </div>
-      <div className="w-1/4 max-h-[100vh] overflow-y-auto pt-28" style={{ boxShadow: `-20px 0 10px -20px rgba(0,0,0,0.45) inset, 20px 0 10px -20px rgba(0,0,0,0.45) inset` }}>
-  <div className="mx-16">
-    <SkillSidebar />
-  </div>
-</div>
-
     </div>
   );
-};
+}
 
 export default Horizontal;
+
+
+
